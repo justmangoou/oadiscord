@@ -1,4 +1,7 @@
 target/
 Cargo.lock
-
+node_modules/
 assets/pi/
+dist/
+deno.json
+deno.lock
