@@ -29,6 +29,7 @@ binary: target/release/$(BINARY)
 # Assemble the full plugin directory in dist/
 bundle: assets/pi/version.json target/release/$(BINARY)
 	rm -rf $(DIST)
+	mkdir -p dist
 	cp -r assets/ $(DIST)
 	cp target/release/$(BINARY) $(DIST)/$(BINARY)-$(TARGET)
 
