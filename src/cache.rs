@@ -69,7 +69,7 @@ pub async fn refresh_guild_cache(instance: &Instance) -> OpenActionResult<()> {
 pub async fn update_soundboard_cache(sounds: &[SoundboardSound]) {
 	let mut cached: Vec<CachedSoundboardSound> = sounds
 		.iter()
-		.filter(|s| !s.available)
+		.filter(|s| s.available)
 		.map(|s| CachedSoundboardSound {
 			name: s.name.clone(),
 			guild_id: s.guild_id.clone(),

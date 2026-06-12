@@ -27,15 +27,15 @@
 		if (Array.isArray(payload.sounds)) {
 			sounds = payload.sounds;
 
-			if (
-				(!selectedSound ||
-					!sounds.some((s) => s.sound_id === selectedSound)) &&
-				sounds.length > 0
-			) {
+			const current = sounds.find((s) => s.sound_id === selectedSound);
+			if (current) {
+				search = current.name;
+			} else if (sounds.length > 0) {
 				$actionSettings = {
 					...$actionSettings,
 					sound: sounds[0]
 				};
+				search = sounds[0].name;
 			}
 		}
 	});
@@ -49,20 +49,25 @@
 		search = sound.name;
 		open = false;
 	}
+
+	function handleBlur() {
+		setTimeout(() => (open = false), 150);
+	}
 </script>
 
-// TODO: generated test page for debugging
 <div class="space-y-4 text-neutral-200">
 	<div class="grid grid-cols-[250px_1fr] items-start">
-		<label class="text-sm pt-2">Sound</label>
+		<label for="sound-search" class="text-sm pt-2">Sound</label>
 
 		<div class="relative">
 			<input
+				id="sound-search"
 				type="text"
 				bind:value={search}
 				placeholder="Search sounds..."
 				class="w-full rounded border border-neutral-600 bg-neutral-800 px-3 py-2"
 				onfocus={() => (open = true)}
+				onblur={handleBlur}
 			/>
 
 			{#if open}
