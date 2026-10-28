@@ -67,7 +67,7 @@ async fn update_feedback(
 
 	let title = match device_type {
 		AudioDeviceType::Input => "Microphone",
-		AudioDeviceType::Output => "Headphones",
+		AudioDeviceType::Output => "Speaker",
 	};
 
 	instance
